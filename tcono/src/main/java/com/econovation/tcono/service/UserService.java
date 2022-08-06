@@ -162,7 +162,7 @@ public class UserService {
         Optional<User> existUserEmail = userRepository.findByUserEmail(user.getUserEmail());
 
 //        없는 이메일일 경우에만 회원가입을 실시
-        if(!existUserEmail.toString().isEmpty()){
+        if(userRepository.existsByUserEmail(userCreateRequestDto.getUserEmail())){
             User save = userRepository.save(user);
             log.info(user.getUserName());
             UUID token = confirmationTokenService.createEmailConfirmationToken(save.getId(), save.getUserEmail());

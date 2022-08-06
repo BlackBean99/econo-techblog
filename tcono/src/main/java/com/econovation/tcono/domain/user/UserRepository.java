@@ -31,4 +31,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
     Optional<User> findByPassword(@Param("password")String password);
 
     User findUserByUserNameAndYear(String userName, Long Year);
+
+    /* 유효성 검사 - 중복 체크
+     * 중복 : true
+     * 중복이 아닌 경우 : false
+     */
+    boolean existsByUserEmail(String email);
 }
